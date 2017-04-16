@@ -199,6 +199,7 @@ class Facebook extends Adapter
       bot.listen (err, event, stop) =>
         return @robot.logger.error err if err or not event?
         event.senderID = event.senderID or event.author or event.userID
+        return unless event.senderID?
         # Get user name
         @getUser event.senderID, (user) =>
           event.senderName = user.name
